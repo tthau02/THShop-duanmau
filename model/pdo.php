@@ -66,6 +66,11 @@ function pdo_query_one($sql){
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row === false) {
+            return null; // Hoặc trả về giá trị khác nếu bạn muốn xử lý khi không có dữ liệu
+        }
+
         return $row;
     }
     catch(PDOException $e){
@@ -75,6 +80,7 @@ function pdo_query_one($sql){
         unset($conn);
     }
 }
+
 /**
  * Thực thi câu lệnh sql truy vấn một giá trị
  * @param string $sql câu lệnh sql

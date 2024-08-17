@@ -67,14 +67,17 @@ if (isset($_GET['act'])) {
                 $type_product = $_POST['type_product'];
                 $special = isset($_POST['special']) ? $_POST['special'] : 0; 
         
-                $fileName = $_FILES["image_pro"]["name"];
-                $target_dir = "../upload/";
-                $target_file = $target_dir . basename($fileName);
-                $image_pro = $fileName;
-        
-                if (move_uploaded_file($_FILES["image_pro"]["tmp_name"], $target_file)) {
-                } 
-        
+                if (!empty($_FILES["image_pro"]["name"])) {
+                    $fileName = $_FILES["image_pro"]["name"];
+                    $target_dir = "../upload/";
+                    $target_file = $target_dir . basename($fileName);
+                    $image_pro = $fileName;
+                    if (move_uploaded_file($_FILES["image_pro"]["tmp_name"], $target_file)) {
+                    }
+                } else {
+                    $image_pro = get_current_image($product_id);
+                }  
+
                 insert_sanpham($name, $price, $discount, $image_pro, $date_add, $description, $special, $type_product);
                 $thongbao = "Thêm thành công";
             }
@@ -129,13 +132,16 @@ if (isset($_GET['act'])) {
                 $type_product = $_POST['type_product'];
                 $special = isset($_POST['special']) ? $_POST['special'] : 0; 
         
-                $fileName = $_FILES["image_pro"]["name"];
-                $target_dir = "../upload/";
-                $target_file = $target_dir . basename($fileName);
-                $image_pro = $fileName;
-        
-                if (move_uploaded_file($_FILES["image_pro"]["tmp_name"], $target_file)) {
-                } 
+                if (!empty($_FILES["image_pro"]["name"])) {
+                    $fileName = $_FILES["image_pro"]["name"];
+                    $target_dir = "../upload/";
+                    $target_file = $target_dir . basename($fileName);
+                    $image_pro = $fileName;
+                    if (move_uploaded_file($_FILES["image_pro"]["tmp_name"], $target_file)) {
+                    }
+                } else {
+                    $image_pro = get_current_image($product_id);
+                }   
         
                 update_sanpham($product_id, $name, $price, $discount, $image_pro, $date_add, $description, $special, $type_product);
                 $thongbao = "Cập nhật thành công";
@@ -143,10 +149,74 @@ if (isset($_GET['act'])) {
             include "product/update.php"; 
             break;
 
-        case 'add_kh':
+        case 'list-account':
             $listaccount = loadAll_account();
             include "taikhoan/list.php";
             break;
+
+        case 'create-account':
+            if(isset($_POST["btnAddAccount"])){
+                $customer_id = $_POST["customer_id"];
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+                $email = $_POST["email"];
+                $phone = $_POST["phone"];
+                $address = $_POST["address"];
+                $role = isset($_POST['role']) ? $_POST['role'] : 0;
+
+                if (!empty($_FILES["image_user"]["name"])) {
+                    $fileName = $_FILES["image_user"]["name"];
+                    $target_dir = "../upload/";
+                    $target_file = $target_dir . basename($fileName);
+                    $image_user = $fileName;
+                    if (move_uploaded_file($_FILES["image_user"]["tmp_name"], $target_file)) {
+                    }
+                } else {
+                    $image_user = get_current_image($customer_id);
+                }   
+                insert_account_admin($password, $username, $email, $phone, $image_user, $role, $address);
+                $thongbao = "Thêm mới thành công";
+
+            }
+            $listaccount = loadAll_account();
+            include "taikhoan/create.php";
+            break;
+
+        case 'updateAc':
+            if (isset($_GET['customer_id']) && $_GET['customer_id'] > 0) {
+                $Oneaccount = loadOne_account($_GET['customer_id']);
+            } else {
+                $Oneaccount = null;
+            }
+            $listaccount = loadAll_account();
+            include "taikhoan/update.php";
+            break;
+        
+        case 'update-account':
+            if(isset($_POST["updateAccount"])){
+                $customer_id = $_POST["customer_id"];
+                $username = $_POST["username"];
+                $password = $_POST["password"];
+                $email = $_POST["email"];
+                $phone = $_POST["phone"];
+                $address = $_POST["address"];
+                $role = isset($_POST['role']) ? $_POST['role'] : 0;
+                if (!empty($_FILES["image_user"]["name"])) {
+                    $fileName = $_FILES["image_user"]["name"];
+                    $target_dir = "../upload/";
+                    $target_file = $target_dir . basename($fileName);
+                    $image_user = $fileName;
+                    if (move_uploaded_file($_FILES["image_user"]["tmp_name"], $target_file)) {
+                    }
+                } else {
+                    $image_user = get_current_image_account($customer_id);
+                }   
+                update_account_admin($customer_id, $username, $email, $phone, $address, $image_user, $role);
+                $thongbao = "Cập nhật thành công";
+            }
+            include "taikhoan/update.php";
+            break;
+            
         case 'deleteAc':
             if (isset($_GET['customer_id']) && $_GET['customer_id'] > 0) {
                 $idaccount = $_GET['customer_id'];

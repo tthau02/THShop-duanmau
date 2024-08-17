@@ -29,10 +29,10 @@
                     <div class="login">
                             <?php
                                 if(isset($_SESSION["user"])){
-                                    extract($_SESSION["user"])
+                                    extract($_SESSION["user"])  
                                     ?>
                                         <a href=""><i class="fa-solid fa-user" style="color: aliceblue;"></i></a>
-                                        <a href="" style="font-size: 17px;"><?=$username?></a>
+                                        <a href="" style="font-size: 17px;"><?= $username?></a>
                                     <?php
                                 }else{
                                     ?>

@@ -13,19 +13,19 @@
                             <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                         </div>
                         <div class="input-field">
-                            <input type="text" id="username" name="username" placeholder="Họ và tên" required>
+                            <input type="text" id="username" name="username" placeholder="Họ và tên">
                         </div>
                         <div class="input-field" id="emailField">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
+                            <input type="text" id="email" name="email" placeholder="Email">
                         </div>
                         <div class="input-field" id="phoneField">
-                            <input type="text" id="phone" name="phone" placeholder="Số điện thoại" required>
+                            <input type="text" id="phone" name="phone" placeholder="Số điện thoại">
                         </div>
                         <div class="input-field">
-                            <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+                            <input type="password" id="password" name="password" placeholder="Mật khẩu">
                         </div>
                         <div class="input-field">
-                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu" required>
+                            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Nhập lại mật khẩu">
                         </div>
                         <div class="input-field">
                             <input type="submit" value="Đăng ký" name="btn-register">

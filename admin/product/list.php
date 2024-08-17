@@ -79,18 +79,10 @@
                                     </td>
                                     <td scope="row"><?=$product_id?></td>
                                     <td><img src="../upload/<?=$image_pro?>" alt="" style="width: 100px; height: 100px;"></td>
-                                    <td>
-                                        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100px;">
-                                            <?=$name?>
-                                        </div>
-                                    </td>
+                                    <td><?=$name?></td>
                                     <td><?=$price?></td>
                                     <td><?=$discount?></td>
-                                    <td>
-                                        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100px;">
-                                        <?=$date_add?>
-                                        </div>
-                                    </td>
+                                    <td><?=$date_add?></td>
                                     <td>
                                     <?php if ($special == 0) {?>
                                             <span class="badge bg-danger">Bình thường</span>
@@ -101,16 +93,18 @@
                                     <td><?=$views?></td>
                                     <td><?=$type_product?></td>
                                     <td>
-                                        <button class="btn btn-success">
-                                            <a href="?act=updateSP&product_id=<?=$product_id?>" class="text-white">
-                                                Sửa
-                                            </a>
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <a href="javascript:void(0)" onclick="confirmDelete('?act=deleteSP&product_id=<?=$product_id?>')" class="text-white">
-                                                Xóa      
-                                            </a>
-                                        </button>
+                                        <div class="d-flex ml-2">
+                                            <button class="btn btn-success">
+                                                <a href="?act=updateSP&product_id=<?=$product_id?>" class="text-white">
+                                                    Sửa
+                                                </a>
+                                            </button>
+                                            <button class="btn btn-danger">
+                                                <a onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không!')" href="?act=deleteSP&product_id=<?=$product_id?>" class="text-white">
+                                                    Xóa      
+                                                </a>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php

@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <li class="list-group-item list-group-item-action rounded-0 border-0 mt-3 mb-3">
-                    <a href="index.php?act=add_kh">
+                    <a href="index.php?act=list-account">
                         <i class="fa-solid fa-person-military-pointing"></i> Khách hàng
                     </a>
                 </li>

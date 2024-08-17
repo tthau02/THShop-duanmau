@@ -26,7 +26,7 @@
             <form id="addTypeForm" action="index.php?act=add_type" method="POST" class="pb-5 mt-4 ms-4 mb-4 col-md-11">
                 <div class="form-group">
                     <label for="typeID">Mã loại</label>
-                    <input type="text" class="form-control mt-2 mb-3" id="typeID" name="typeID">
+                    <input type="text" class="form-control mt-2 mb-3" name="typeID">
                 </div>
                 <div class="form-group">
                     <label for="typeName">Tên loại</label>
@@ -52,7 +52,6 @@
 
     <script>
         document.getElementById('addTypeForm').addEventListener('submit', function(event) {
-            var typeID = document.getElementById('typeID').value.trim();
             var typeName = document.getElementById('typeName').value.trim();
             
             if (typeID === "" || typeName === "") {

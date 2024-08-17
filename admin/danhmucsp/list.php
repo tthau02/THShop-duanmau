@@ -53,7 +53,7 @@
                                                 </a>
                                             </button>
                                             <button class="btn btn-danger">
-                                                <a href="javascript:void(0)" onclick="confirmDelete('?act=xoadanhmuc&type_id=<?=$type_id?>')" class="text-white">
+                                                <a onclick="return confirm('Bạn chắc chắn muốn xóa danh mục này không!')" href="?act=xoadanhmuc&type_id=<?=$type_id?>" class="text-white">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </a>
                                             </button>

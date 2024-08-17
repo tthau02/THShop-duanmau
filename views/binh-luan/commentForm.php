@@ -19,7 +19,7 @@
     <?php foreach ($listComment as $comment) { ?>
         <div class="comment">
             <div class="comment-avatar">
-                <img src="upload/IMG_20240427_210051_101.jpg" alt="User Avatar">
+                <img src="upload/<?=($comment["image_user"])?>" alt="User Avatar">
             </div>
             <div class="comment-content">
                 <h4 class="comment-author" style="font-size: 15px; color: blue;"><?=($comment['username']) ?></h4>
@@ -31,7 +31,7 @@
             </div>
         </div>
     <?php }?>
-
+        
     <?php if(isset($_SESSION["user"]) && !empty($_SESSION["user"])){ ?>
         <div class="comment-form">
             <h4>Để lại một bình luận</h4>

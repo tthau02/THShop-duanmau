@@ -19,59 +19,55 @@
         <?php include "sidebar.php"; ?>
         <!-- Main content -->
         <div class="shadow bg-light pb-5 mt-4 ms-4 col-md-10">
-            <form id="addProductForm" action="?act=update-account" method="POST" class="pb-5 mt-4 ms-4 me-4" enctype="multipart/form-data">
+            <form id="addProductForm" action="?act=create-account" method="POST" class="pb-5 mt-4 ms-4 me-4" enctype="multipart/form-data">
                 <div>
-                    <h4 class="p-3">Cập nhật tài khoản</h4>
+                    <h4 class="p-3">Thêm tài khoản</h4>
                 </div>
                 <hr>
                 <div class="row">
-                    <input type="hidden" name="customer_id" value="<?= isset($customer_id) ? $customer_id : '' ?>">
                     <div class="">
                         <label for="image_pro" class="form-label">Ảnh đại diện</label>
-                        <input type="file" class="form-control rounded-0" name="image_user">
-                        <?php if (isset($Oneaccount["image_user"]) && $image_user): ?>
-                            <img src="../upload/<?= $Oneaccount["image_user"] ?>" alt="Current Image" style="max-width: 100px;">
-                        <?php endif; ?>
+                        <input type="file" class="form-control rounded-0" name="image_user" placeholder="">
                     </div>
                     <div class="">
                         <label for="name" class="form-label">Họ và tên</label>
-                        <input type="text" class="form-control rounded-0" name="username" placeholder="Nhập họ và tên" value="<?= isset($Oneaccount["username"]) ? $Oneaccount["username"] : '' ?>">
+                        <input type="text" class="form-control rounded-0" name="username" placeholder="Nhập họ và tên">
                     </div>
                     <div class="">
                         <label for="email" class="form-label">Email</label>
-                        <input name="email" class="form-control" placeholder="Nhập email" value="<?= isset($Oneaccount["email"]) ? $Oneaccount["email"] : '' ?>">
+                        <textarea name="email"  cols="30" rows="3" class="form-control" placeholder="Nhập email"></textarea>
                     </div>
                     <div class="">
                         <label for="phone" class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control rounded-0" name="phone" placeholder="Nhập số điện thoại" value="<?= isset($Oneaccount["phone"]) ? $Oneaccount["phone"] : '' ?>">
+                        <input type="text" class="form-control rounded-0"  name="phone" placeholder="Nhập số điện thoại">
                     </div>
                     <div class="">
                         <label for="address" class="form-label">Địa chỉ</label>
-                        <input type="text" class="form-control rounded-0" name="address" placeholder="Nhập địa chỉ" value="<?= isset($Oneaccount["address"]) ? $Oneaccount["address"] : '' ?>">
+                        <input type="text" class="form-control rounded-0"  name="address" placeholder="Nhập địa chỉ">
                     </div>
                     <div class="">
                         <label for="password" class="form-label">Mật khẩu</label>
-                        <input type="text" class="form-control rounded-0" name="password" placeholder="Nhập mật khẩu" value="<?= isset($Oneaccount["password"]) ? $Oneaccount["password"] : '' ?>">
+                        <input type="text" class="form-control rounded-0"  name="password" placeholder="Nhập mật khẩu">
                     </div>
                     <div class="mt-3">
                         <span class="form-label">Vai trò</span>
                         <div class="row ps-3 pt-2">
                             <div class="form-check col-2">
-                                <input class="form-check-input" type="radio" name="role" value="1" <?= isset($Oneaccount["role"]) && $Oneaccount["role"] == 0 ? 'checked' : '' ?>>
+                                <input class="form-check-input" type="radio" name="role" value="1" id="role1">
                                 <label class="form-check-label" for="role1">
                                     Admin
                                 </label>
                             </div>
                             <div class="form-check col-5">
-                                <input class="form-check-input" type="radio" name="role" value="0" <?= isset($Oneaccount["role"]) && $Oneaccount["role"] == 0 ? 'checked' : '' ?>>
+                                <input class="form-check-input" type="radio" name="role" value="0" id="role2">
                                 <label class="form-check-label" for="role2">
-                                    Khách hàng  
+                                    Khách hàng
                                 </label>
                             </div>
                         </div>
                     </div>
                     <div class="mt-3">
-                        <button type="submit" class="btn btn-info" name="updateAccount">Cập nhật</button>
+                        <button type="submit" class="btn btn-info" name="btnAddAccount">Tạo mới</button>
                         <button type="reset" class="btn btn-info">Nhập lại</button>
                         <a href="?act=list-account" class="btn btn-info">Danh sách</a>
                     </div>  

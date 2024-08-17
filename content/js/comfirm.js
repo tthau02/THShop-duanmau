@@ -21,10 +21,3 @@ document.getElementById('deselectAllBtn').onclick = function() {
         checkbox.checked = false;
     }
 }
-
-// JavaScript để xác nhận xóa
-function confirmDelete(url) {
-    if (confirm("Bạn có chắc chắn muốn xóa danh mục này không?")) {
-        window.location.href = url;
-    }
-}

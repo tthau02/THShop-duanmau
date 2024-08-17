@@ -1,4 +1,3 @@
-// kiểm tra các trường input
 document.getElementById('addProductForm').addEventListener('submit', function(event) {   
     var name = document.getElementById('name').value.trim();
     var description = document.getElementById('description').value.trim();

@@ -12,7 +12,8 @@
     $listdanhmuc = loadALL_danhmuc();
     $listTop10 = loadALL_sanpham_top10();
     $listProductNew = loadALL_sanpham_new();
-    
+    $thongbao = "";
+
     if(isset($_GET['act'])&&($_GET['act']!=="")){
         $act = $_GET['act'];
 
@@ -71,7 +72,6 @@
                 }
                 break;
                 
-                break;
             case 'dangky':
                 if(isset($_POST["btn-register"])){
                     $username = $_POST["username"];
@@ -85,12 +85,11 @@
                 break;
             case 'dangnhap':
                 if(isset($_POST["btn-login"])){
-                    $username = $_POST["username"];
+                    $email = $_POST["email"];
                     $password = $_POST["password"];
-                    $checkuser = check_account($username, $password);
+                    $checkuser = check_account($email, $password);
                     if(is_array($checkuser)){
                         $_SESSION["user"] = $checkuser;
-                        echo "<script>alert('Bạn đã tạo tài khoản thành công')</script>";
                         header("location: index.php");
                     }else{
                         echo "<script>alert('Tài khoản không tồn tại. Vui lòng kiểm tra lại')</script>";
@@ -123,21 +122,28 @@
                     $emailUpdate = $_POST["emailUpdate"];
                     $address = $_POST["address"];
                     $phoneUpdate = $_POST["phoneUpdate"];
-            
-                    $fileName = $_FILES["image_user"]["name"];
-                    $target_dir = "upload/";
-                    $target_file = $target_dir . basename($fileName);
-                    $image_user = $fileName;
-            
-                    if (move_uploaded_file($_FILES["image_user"]["tmp_name"], $target_file)) {
+                    $current_image = get_current_image_account($customer_id);
+
+                    if (!empty($_FILES["image_user"]["name"])) {
+                        $fileName = $_FILES["image_user"]["name"];
+                        $target_dir = "upload/";
+                        $target_file = $target_dir . basename($fileName);
+                        $image_user = $fileName;
+                        if (move_uploaded_file($_FILES["image_user"]["tmp_name"], $target_file)) {
+                        } else {
+                            $image_user = $current_image;
+                        }
+                    } else {
+                        $image_user = $current_image;
                     }
-            
                     update_account($customer_id, $nameUpdate, $emailUpdate, $phoneUpdate, $address, $image_user);
-                    $_SESSION["user"] = check_account($nameUpdate, $_SESSION["user"]["password"]);
-                    header("location: index.php?act=thongtintaikhoan");
+                    $_SESSION["user"] = check_account($emailUpdate, $_SESSION["user"]["password"]);
+                    header("Location: index.php?act=thongtintaikhoan");
+                    exit();
                 }
                 include "views/tai-khoan/capnhattaikhoan.php";
                 break;
+                
 
                 case 'change_pass':
                     if (isset($_POST['changePassBtn'])) {
@@ -150,12 +156,19 @@
                     }
                     include "views/tai-khoan/doimatkhau.php";
                     break;
-                case "remopassword":
-                    if(isset($_POST["passwordRemo"])){
-                        $passwordOld = $_POST["password"];
-                        $passwordnew = $_POST["passwordnew"];
-                        $repaasswordnew = $_POST["repasswordnew"];
+
+                case "forgot-pass":
+                    if(isset($_POST["btn-forgot"])){
+                        $email = $_POST["email"];
+                        $checkEmail = check_email($email);
+                        if(is_array($checkEmail)){
+                            $thongbao = "Mật khẩu của bạn là: " . $checkEmail["password"];
+                        }else{
+                            $thongbao = "Email không tồn tại. Vui lòng kiểm tra lại!";
+                        }
                     }
+                    include "views/tai-khoan/forgot.php";
+                    break;
             default:
                 include "views/trang-chinh/home.php";
                 break;
@@ -164,7 +177,7 @@
         }
     }else{
         include "views/trang-chinh/home.php";
-    }
+    }   
 
     include "views/trang-chinh/footer.php";
 ?>

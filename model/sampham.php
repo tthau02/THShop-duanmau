@@ -90,6 +90,12 @@ function update_sanpham($product_id, $name, $price, $discount, $image_pro, $date
     pdo_execute($sql);
 }
 
+function get_current_image($product_id) {
+    $sql = "SELECT `image_pro` FROM `product` WHERE `product_id` = $product_id";
+    $result = pdo_query_one($sql);
+    return $result['image_pro'];
+}
+
 function getProductByTypeID($type_product){
     $sql = "SELECT * FROM product WHERE 1 ORDER BY type_product = $type_product DESC LIMIT 0,8";
     $productID = pdo_query($sql);

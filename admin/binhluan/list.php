@@ -63,9 +63,10 @@
                                     
                                     <td>
                                         <button class="btn btn-danger">
-                                            <a href="javascript:void(0)" onclick="confirmDelete('?act=deleteCommetn&comment_id=<?=$comment_id?>')" class="text-white">
+                                            <a onclick="return confirm('Bạn có muốn xóa bình luận này không!')" href="?act=deleteCommetn&comment_id=<?=$comment_id?>" class="text-white">
                                                 Xóa      
                                             </a>
+                                            
                                         </button>
                                     </td>
                                 </tr>

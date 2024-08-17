@@ -56,16 +56,17 @@
                                     <td><?=$address?></td>
                                     <td><?=$role?></td>
                                     <td>
-                                    <button class="btn btn-success">
-                                            <a href="?act=updateAc&customer_id=<?=$customer_id?>" class="text-white">
+                                        <div class="d-flex">
+                                            <a href="?act=updateAc&customer_id=<?= $customer_id ?>" class="btn btn-success text-white">
                                                 Sửa
                                             </a>
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <a href="javascript:void(0)" onclick="confirmDelete('?act=deleteAc&customer_id=<?=$customer_id?>')" class="text-white">
-                                                Xóa      
-                                            </a>
-                                        </button>
+
+                                            <button class="btn btn-danger">
+                                                <a onclick="return confirm('Bạn có muốn xóa tài khoản này không!')" href="?act=deleteAc&customer_id=<?=$customer_id?>" class="text-white">
+                                                    Xóa      
+                                                </a>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <?php
@@ -74,10 +75,9 @@
                     </tbody>
                     </table>
                     <form class="pb-5 mt-4 ms-4 mb-4 col-md-11" method="post" action="index.php?act=deleteSelected">
-                    <button type="button" class="btn btn-info text-light" id="selectAllBtn">Chọn tất cả</button>
-                    <button type="button" class="btn btn-info text-light" id="deselectAllBtn">Bỏ chọn tất cả</button>
-                    <button type="submit" class="btn btn-info text-light">Xóa mục chọn</button>
-                    <button type="button" class="btn btn-info"><a href="?act=add_product" class="text-light">Nhập thêm</a></button>
+                        <button type="button" class="btn btn-info text-light" id="selectAllBtn">Chọn tất cả</button>
+                        <button type="button" class="btn btn-info text-light" id="deselectAllBtn">Bỏ chọn tất cả</button>
+                        <button type="button" class="btn btn-info"><a href="?act=create-account" class="text-light">Nhập thêm</a></button>
                     </form>
             </div>
         </div>
